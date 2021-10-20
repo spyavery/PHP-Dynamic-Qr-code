@@ -71,11 +71,11 @@
                 <label for="format">Format</label>
                 <select name="format" class="form-control">
                     <option value="png">PNG</option>
-                    <option value="gif">GIF</option>
+                   <!--  <option value="gif">GIF</option>
                     <option value="jpeg">JPEG</option>
                     <option value="jpg">JPG</option>
                     <option value="svg">SVG</option>
-                    <option value="eps">EPS</option>
+                    <option value="eps">EPS</option> -->
                 </select>
     </div>
   </div>

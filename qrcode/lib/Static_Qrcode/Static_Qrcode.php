@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 /**
 * PHP Dynamic Qr code
 *
@@ -53,13 +55,33 @@ class Static_Qrcode
     /**
      * create a qr code of type "text"
      * @string text -> required
-     */
+     
     public function textQrcode($text)
     {
         if($text != NULL){
             $this->sData = $text;
             $this->sContent = '<strong>Text:</strong> '.$text;
             $this->add($this->sData, $this->sContent);
+        }
+        else
+            $this->requiredFieldsError();
+    }
+    **/
+
+
+    public function textQrcode($filename, $uname, $text, $start, $end, $result)
+    {
+        if($text != NULL){
+            $this->sData = BASE_PATH.'/assets/reports/'.$filename.'.pdf';
+            $this->fileName = $filename;
+            $this->uName = $uname;
+            $this->start = $start;
+            $this->end = $end;
+            $this->result = $result;
+            $this->sContent = '<strong>Name:</strong> '.$uname.'<strong>ID:</strong> '.$text.'<br><strong>Date:</strong> '.$start.'<br><strong>End:</strong> '.$end.'<br><strong>Result:</strong> '.$result;
+            $this->add($this->sData, $this->sContent);
+            $this->createPDF($this->fileName,$this->sData, $this->uName,$this->start,$this->end,$this->result);
+        
         }
         else
             $this->requiredFieldsError();
@@ -407,6 +429,7 @@ class Static_Qrcode
         if(!file_exists(DIRECTORY.$data_to_db['filename'].'.'.$data_to_db['format'])){
             $content = file_get_contents('https://api.qrserver.com/v1/create-qr-code/?data='.$sData.'&amp;&size='.$options['size'].'x'.$options['size'].'&ecc='.$options['errorCorrectionLevel'].'&margin=0&color='.$options['foreground'].'&bgcolor='.$options['background'].'&qzone=2'.'&format='.$data_to_db['format']);
             
+            // $filename = DIRECTORY.$data_to_db['filename'].'.'.$data_to_db['format'];
             $filename = DIRECTORY.$data_to_db['filename'].'.'.$data_to_db['format'];
             
             try{
@@ -430,10 +453,99 @@ class Static_Qrcode
         }
         else{
         echo 'Insert failed: ' . $db->getLastError();
-        exit();
+        // exit();
         }
     }
-    
+
+    public function createPDF($filename, $uname, $text, $start, $end, $result){
+
+        $document_folder = BASE_PATH.'/assets/reports';
+            $document_folder2 = BASE_PATH.'/assets/reports1';
+
+            if(!is_dir($document_folder2)){
+                mkdir($document_folder2, 0777,true);
+            }
+        $extension = ".pdf";
+        $file_name = $filename;
+
+        $html = '<main role="main" class="container">
+        
+
+        <div class="text-center" style="margin-top:150px; padding-top:170px; margin-bottom:20px;">
+            <h1>ERDURAN GENETICS LABORATORY</h1>
+            <p style="float: right; width: 28%;">'.date("d.m.Y").'</p>
+        </div>
+
+        <div class="text-center mt-3 pt-5" style="margin-top:80px;">
+            <p>Erduran Genetik laboratuvarımızda '.$start.' tarihinde '.$end.', '.$text.' kimlik numarali '.$uname.', adlı kişiye ait nazofarenks sürüntü örneğinden yapılan <em>SARS-CoV2</em> virüs testi <strong><u>Gerçek-Zamanlı PCR yöntemi</u></strong> ile çalısılmış ve <em>SARS-CoV2</em> virüsü '.$result.'.</p>
+        </div>
+
+        <div class="text-center mt-3 pt-5" style="margin-top:80px;">
+            <h3>To Whom It May Concern</h3>
+            <p><em>SARS-CoV2</em> Virus test was conducted by <strong><u>Real-Time PCR Method</u></strong> by Erduran Genetics Laboratory on nasopharyngeal swab specimen collected from '.$uname.', ID number '.$text.', on '.$start.' at '.$end.'. <em>The SARS-CoV2</em> viral RNA '.$result.' in the nasopharyngel specimen. </p>
+        </div>
+
+        <div class="mt-2 pt-5" style="margin-top:80px;">
+            <p>Kind Regards,</p>
+        </div>
+
+
+
+
+        </main><div style="position: fixed; right: 0mm; bottom: 30mm;">
+        <img src="'.DIRECTORY.''.$file_name.'.png" width="100">
+        </div>';
+
+
+        //==============================================================
+        //==============================================================
+        //==============================================================
+
+        // $path = (getenv('MPDF_ROOT')) ? getenv('MPDF_ROOT') : __DIR__;
+        // require_once $path . '/vendor/autoload.php';
+        require_once BASE_PATH.'/vendor/autoload.php';
+
+        $mpdf = new \Mpdf\Mpdf();
+
+        $mpdf->SetDisplayMode('fullpage');
+
+        // LOAD a stylesheet
+        // $stylesheet = file_get_contents('assets/mpdfstyleA4.css');
+        $stylesheet = file_get_contents(BASE_PATH.'/assets/styles.css');
+        $mpdf->WriteHTML($stylesheet,1);	// The parameter 1 tells that this is css/style only and no body/html/text
+
+        $mpdf->SetHTMLFooter('<div>
+        <p class="text-center;">Kurluluş Cad. (Bellapais Yolu), Trafik Işıkları Yanı, Girne | Tel: +90 392 816 10 02 / 03 / 04 / 05 / 06 | +90 392 444 99 44 
+                    <br>
+                        Fax: +90 32 816 06 13 / 14 | Cep: +90 533 869 77 64 | E-posta:erduranlaboratuvarlari@gmail.com | Web:www.erduranlab.com.tr
+                        <br>
+                        DD.007 / YAYIN TARİHİ: 25.04.2017 / REV NO: 00 / REV TARİHİ: __
+                    </p>
+        </div>');
+
+        $mpdf->SetHTMLHeader('<div>
+        <img src="'.BASE_PATH.'/assets/img/header.jpg" width="100%">
+        </div>');
+
+        $mpdf->WriteHTML($html);
+        // if($mpdf->WriteHTML($html)){
+        //     $mpdf->debug = true;
+        // return $mpdf->Output($document_folder."/".$file_name.$extension, "F");
+
+        // exit();
+        //     $this->success('Created Successfully!');
+        // } else {
+        //     $this->failure('You cannot create a new qr code with an existing name on the server OR something went wrong!');
+        // };
+
+        $mpdf->Output();
+        $mpdf->debug = true;
+        return $mpdf->Output($document_folder."/".$file_name.$extension, "F");
+
+        // exit();
+
+    }
+
     /**
      * Edit qr code
      * 
@@ -566,7 +678,7 @@ class Static_Qrcode
         // Redirect to the listing page
         header('Location: static_qrcodes.php');
         // Important! Don't execute the rest put the exit/die.
-    	exit();
+    	// exit();
     }
     
     /**

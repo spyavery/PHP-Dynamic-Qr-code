@@ -26,13 +26,18 @@
                 <td>
                     
                     <!-- EDIT -->
-                    <a href="edit_static.php?filename=<?php echo $row['filename']; ?>&static_id=<?php echo $row['id']; ?>&operation=edit" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <!-- <a href="edit_static.php?filename=<?php echo $row['filename']; ?>&static_id=<?php echo $row['id']; ?>&operation=edit" class="btn btn-primary"><i class="fas fa-edit"></i></a> -->
+
+                    <!-- PRINT -->
+                    <iframe id="iFramePdf" src="<?php echo BASE_PATH.'/assets/reports/'.htmlspecialchars($row['filename']).'.pdf'; ?>" style="display:none;"></iframe>
+                    <a href="#" class="btn btn-primary" onclick="printTrigger('iFramePdf');"><i class="fa fa-print"></i></a>
                     
                     <!-- DELETE -->
                     <a href="#" class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id']; ?>"><i class="fas fa-trash"></i></a>
                     
                     <!-- DOWNLOAD -->
-                    <a href="<?php echo PATH.htmlspecialchars($row['qrcode']); ?>" class="btn btn-primary" download><i class="fa fa-download"></i></a>
+                    <a href="<?php echo BASE_PATH.'/assets/reports/'.htmlspecialchars($row['filename']).'.pdf'; ?>" class="btn btn-primary" download><i class="fa fa-download"></i></a>
+                    <!-- <a href="<?php echo PATH.htmlspecialchars($row['qrcode']); ?>" class="btn btn-primary" download><i class="fa fa-download"></i></a> -->
                 </td>
             </tr>
             <!-- Delete Confirmation Modal -->

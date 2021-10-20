@@ -21,7 +21,8 @@ $static_qrcode = new Static_Qrcode();
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     
     switch($_GET['type']){
-        case 'text':         $static_qrcode->textQrcode($_POST['text']);
+        // case 'text':         $static_qrcode->textQrcode($_POST['text']);
+        case 'text':         $static_qrcode->textQrcode($_POST['filename'],$_POST['uname'], $_POST['text'], $_POST['start'], $_POST['end'], $_POST['result']);
                                 break;
                         
         case 'email':        $static_qrcode->emailQrcode($_POST['email'], $_POST['subject'], $_POST['message']);
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 <!DOCTYPE html>
 <html lang="en">
-    <title>Add static - Qrcode Generator</title>
+    <title>Add Report</title>
     <head>
     <?php include './includes/head.php'; ?>
     </head>
@@ -141,27 +142,51 @@ $(document).ready(function(){
       $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
     });
 
+    // $('#start').daterangepicker({
+    //     timePicker: true,
+    //     singleDatePicker: true,
+    //     showDropdowns: true,
+    //     minYear: 2020,
+    //     maxYear: 2030,
+    //     locale: {
+    //         format: 'YYYY-MM-DD hh:mm A'
+    //   }
+    // })
+
     $('#start').daterangepicker({
-        timePicker: true,
+        timePicker: false,
         singleDatePicker: true,
         showDropdowns: true,
         minYear: 2020,
         maxYear: 2030,
         locale: {
-            format: 'YYYY-MM-DD hh:mm A'
+            format: 'DD-MM-YYYY'
       }
     })
-    
+
     $('#end').daterangepicker({
-        timePicker: true,
-        singleDatePicker: true,
-        showDropdowns: true,
-        minYear: 2020,
-        maxYear: 2030,
-        locale: {
-            format: 'YYYY-MM-DD hh:mm A'
-      }
-    })
+            timePicker: true,
+            singleDatePicker:true,
+            timePicker24Hour: true,
+            timePickerIncrement: 1,
+            timePickerSeconds: true,
+            locale: {
+                format: 'HH:mm'
+            }
+        }).on('show.daterangepicker', function (ev, picker) {
+            picker.container.find(".calendar-table").hide();
+        })
+    
+    // $('#end').daterangepicker({
+    //     timePicker: true,
+    //     singleDatePicker: true,
+    //     showDropdowns: true,
+    //     minYear: 2020,
+    //     maxYear: 2030,
+    //     locale: {
+    //         format: 'YYYY-MM-DD hh:mm A'
+    //   }
+    // })
     
   })
 </script>

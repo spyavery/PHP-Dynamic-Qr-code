@@ -110,12 +110,12 @@ foreach ($createdQrcode_static as $row) {
                                         <span class="info-box-icon"><i class="fa fa-qrcode"></i></span>
 
                                         <div class="info-box-content">
-                                            <span class="info-box-text">Total qr codes</span>
+                                            <span class="info-box-text">Total Reports</span>
                                             <span class="info-box-number"><?php echo $total; ?></span>
                                         </div><!-- /.info-box-content -->
                                     </div>
                                 </div><!-- /.col -->
-                                    
+                                   <!-- 
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="info-box mb-3 bg-success">
                                         <span class="info-box-icon"><i class="fa fa-qrcode"></i></span>
@@ -123,9 +123,9 @@ foreach ($createdQrcode_static as $row) {
                                         <div class="info-box-content">
                                             <span class="info-box-text">Dynamic Qr codes</span>
                                             <span class="info-box-number"><?php echo $numQrcode_dynamic; ?></span>
-                                        </div><!-- /.info-box-content -->
+                                        </div>--><!-- /.info-box-content 
                                     </div>
-                                </div><!-- /.col -->
+                                </div> --><!-- /.col -->
 
                                 <!-- fix for small devices only -->
                                 <div class="clearfix hidden-md-up"></div>
@@ -160,7 +160,7 @@ foreach ($createdQrcode_static as $row) {
                                 <!-- Created chart -->
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title">Qr codes created in the last week</h3>
+                                        <h3 class="card-title">Reports created in the last week</h3>
 
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>

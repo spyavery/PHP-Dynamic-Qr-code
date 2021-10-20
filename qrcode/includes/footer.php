@@ -6,8 +6,8 @@
 
   <!-- Main Footer -->
   <footer class="main-footer text-sm">
-    <strong>Copyright &copy; 2020 <a href="#">PHP Qrcode Generator</a> - </strong>
-    All rights reserved by Giandonato Inverso.
+    <strong>Copyright &copy; 2021 Powered By <a href="#">Ata Bilisim</a>  </strong>
+    .
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
     </div>

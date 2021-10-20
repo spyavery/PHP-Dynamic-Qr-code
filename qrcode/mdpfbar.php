@@ -8,7 +8,7 @@ $document_folder = 'assets/reports';
         if(!is_dir($document_folder)){
             mkdir($document_folder, 0777,true);
         }
-        $file_name = "namegiven";
+        $file_name = "namegiven2";
 
 $html = '<main role="main" class="container">
         
@@ -32,7 +32,11 @@ $html = '<main role="main" class="container">
 </div>
 
 
-</main>';
+
+
+</main><div style="position: fixed; right: 0mm; bottom: 30mm;">
+<img src="saved_qrcode/Amazon.png" width="100">
+</div>';
 
 
 //==============================================================

@@ -39,9 +39,11 @@ $total_pages = $db->totalPages;
 
 <!DOCTYPE html>
 <html lang="en">
-    <title>List static - Qrcode Generator</title>
+    <title>List Reports</title>
     <head>
-    <?php include './includes/head.php'; ?>
+    <?php include './includes/head.php'; 
+    
+    ?>
     </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -61,7 +63,7 @@ $total_pages = $db->totalPages;
         <div class="row mb-2">
             
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Static Qr codes</h1>
+            <h1 class="m-0 text-dark">Reports </h1>
           </div><!-- /.col -->
           
           <div class="col-sm-6">
@@ -99,5 +101,13 @@ $total_pages = $db->totalPages;
     <!-- Footer and scripts -->
     <?php include './includes/footer.php'; ?>
     <!-- /.Footer and scripts -->
+
+    <script>
+      function printTrigger(elementId) {
+          var getMyFrame = document.getElementById(elementId);
+          getMyFrame.focus();
+          getMyFrame.contentWindow.print();
+      }
+    </script>
 </body>
 </html>

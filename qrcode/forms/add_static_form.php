@@ -4,7 +4,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link active" data-toggle="pill" href="#text" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Text <i class="fas fa-align-left"></i></a>
-                  </li>
+                  <!-- </li>
                   <li class="nav-item">
                     <a class="nav-link" data-toggle="pill" href="#email" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Email <i class="far fa-envelope"></i></a>
                   </li>
@@ -40,7 +40,7 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" data-toggle="pill" href="#bitcoin" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Bitcoin <i class="fab fa-bitcoin"></i></a>
-                  </li>
+                  </li> -->
                 </ul>
             </div>
               <div class="card-body">

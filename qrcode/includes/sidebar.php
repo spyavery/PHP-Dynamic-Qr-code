@@ -2,9 +2,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="./index.php" class="brand-link">
-      <img src="dist/img/Symbol_WhiteBlue.png" alt="Logo" class="brand-image"
+      <img src="./assets/img/logo.png" alt="Logo" class="brand-image"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Qrcode Generator</span>
+      <span class="brand-text font-weight-light"></span>
     </a>
 
     <!-- Sidebar -->
@@ -33,7 +33,7 @@
              </p>
            </a>
          </li>
-          <li <?php echo (CURRENT_PAGE == 'dynamic_qrcodes.php' || CURRENT_PAGE == 'add_dynamic.php' || (substr(CURRENT_PAGE, 0, 16) == 'edit_dynamic.php')) ? ' class="nav-item has-treeview menu-open"' : ' class="nav-item has-treeview"'; ?>> 
+          <!--<li <?php echo (CURRENT_PAGE == 'dynamic_qrcodes.php' || CURRENT_PAGE == 'add_dynamic.php' || (substr(CURRENT_PAGE, 0, 16) == 'edit_dynamic.php')) ? ' class="nav-item has-treeview menu-open"' : ' class="nav-item has-treeview"'; ?>> 
             <a href="#" <?php echo (CURRENT_PAGE == 'dynamic_qrcodes.php' || CURRENT_PAGE == 'add_dynamic.php' || (substr(CURRENT_PAGE, 0, 16) == 'edit_dynamic.php')) ? ' class="nav-link active"' : ' class="nav-link"'; ?>>
               <i class="nav-icon fa fa-qrcode"></i>
               <p>
@@ -55,12 +55,12 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li <?php echo (CURRENT_PAGE == 'static_qrcodes.php' || CURRENT_PAGE == 'add_static.php' || (substr(CURRENT_PAGE, 0, 15) == 'edit_static.php')) ? ' class="nav-item has-treeview menu-open"' : ' class="nav-item has-treeview"'; ?>>
             <a href="#" <?php echo (CURRENT_PAGE == 'static_qrcodes.php' || CURRENT_PAGE == 'add_static.php' || (substr(CURRENT_PAGE, 0, 15) == 'edit_static.php')) ? ' class="nav-link active"' : ' class="nav-link"'; ?>>
               <i class="nav-icon fa fa-qrcode"></i>
               <p>
-                  Static Qr codes
+                  Reports
                   <i class="right fas fa-angle-left"></i>
             </p>
             </a>
